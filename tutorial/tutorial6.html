@@ -1,0 +1,50 @@
+<html>
+<head>
+	<script type="application/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+
+	<p>A tutorial of D3 from <a href="http://www.youtube.com/watch?v=iMYkVLWc3y0">here</a>.</p>
+
+	<script>
+		var dataArray = [3, 20, 70, 30, 40];
+		var containerWidth = 500;
+		var containerHeight = 500;
+
+		var containerWidthScale = d3.scale.linear()
+									.domain([0, 70])
+									.range([0, containerWidth]);
+
+		var colorScale = d3.scale.linear()
+							.domain([0, 70])
+							.range(["red", "blue"]);
+
+		var axis = d3.svg.axis()
+					.ticks(6)
+					.scale(containerWidthScale);
+
+		var canvas = d3.select("body")
+						.append("svg")
+						.attr("width", containerWidth)
+						.attr("height", containerHeight)
+						.append("g")
+						.attr("transform", "translate(50, 50)")
+
+		var bars = canvas.selectAll("rect")
+					.data(dataArray)
+					.enter()
+						.append("rect")
+						.attr("width", function(d) { return containerWidthScale(d); })
+						.attr("height", 20)
+						.attr("fill", function(d) { return colorScale(d); })
+						.attr("y", function(d, i) { return i * 20});
+
+		canvas.append("g")
+			.attr("transform", "translate(0, 300)")
+			.call(axis);
+
+	</script>
+
+</body>
+</html>
