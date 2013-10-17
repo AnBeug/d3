@@ -1,0 +1,38 @@
+<html>
+<head>
+	<script type="application/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+	From <a href="http://www.youtube.com/watch?v=2S1AbEWX85o">this</a>.
+
+	<script>
+
+		d3.json("mydata.json", function(data) {
+			var canvas = d3.select("body").append("svg")
+				.attr("width", 500)
+				.attr("height", 500);
+
+			canvas.selectAll("rect")
+				.data(data)
+				.enter()
+					.append("rect")
+					.attr("width", function(d) { return d.age * 10; })
+					.attr("height", 23)
+					.attr("y", function(d, i) { return i * 25; })
+					.attr("fill", "blue");
+
+			canvas.selectAll("text")
+				.data(data)
+				.enter()
+					.append("text")
+					.attr("fill", "white")
+					.attr("y", function(d, i) { return i * 25 + 15; })
+					.attr("x", 10)
+					.text(function(d) { return d.name; });
+		});
+
+	</script>
+
+</body>
+</html>
