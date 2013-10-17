@@ -4,34 +4,10 @@
 </head>
 
 <body>
+	From <a href="http://www.youtube.com/watch?v=1i70Ci9stLc">this</a>.
 
 	<script>
-		var dataArray = [3];
-		var containerWidth = 500;
-		var containerHeight = 500;
-
-
-		var canvas = d3.select("body")
-						.append("svg")
-						.attr("width", containerWidth)
-						.attr("height", containerHeight);
-
-		var circle = canvas
-				.append("circle")
-				.attr("cx", 50)
-				.attr("cy", 50)
-				.attr("r", 25)
-				.attr("fill", "black");
-
-		circle.transition()
-			.duration(1500)
-			.delay(2000)
-			.attr("cx", 150)
-			.attr("cy", 150)
-			.attr("fill", "blue")
-			.each("end", function() { d3.select(this).attr("fill", "red") });
-
-
+		var data = [10, 20, 40, 4, 22];
 	</script>
 
 </body>
